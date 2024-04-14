@@ -1,0 +1,6 @@
+@integracaoLeads2b_HostAddress = http://localhost:5018
+
+GET {{integracaoLeads2b_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
