@@ -32,7 +32,7 @@ namespace integracaoLeads2b.Persistence
                 lead.Property(l => l.Origin).HasColumnType("varchar(50)");
                 lead.Property(l => l.Lead_created_at).IsRequired().HasColumnName("Lead_Created_at").HasColumnType("datetime");
                 lead.Property(l => l.City).HasColumnType("varchar(100)");
-                lead.Property(l => l.State).HasColumnType("varchar(2)");
+                lead.Property(l => l.State).HasColumnType("varchar(25)");
                 lead.Property(l => l.Lead_responsable).HasColumnType("varchar(100)");
                 lead.Property(l => l.Lead_responsable_id);
                 lead.Property(l => l.Lead_status).HasColumnType("varchar(50)");
