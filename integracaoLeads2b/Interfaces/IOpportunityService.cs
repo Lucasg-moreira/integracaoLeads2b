@@ -4,6 +4,6 @@ namespace integracaoLeads2b.Interfaces
 {
     public interface IOpportunityService
     {
-        public void InsertRowsDb(string startAt, string endAt);
+        public void InsertRowsDb(string startAt, string endAt, string token);
     }
 }

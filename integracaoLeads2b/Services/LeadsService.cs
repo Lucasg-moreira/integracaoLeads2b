@@ -23,7 +23,7 @@ namespace integracaoLeads2b.Services
             _leadsRepository = leadsRepository;
         }
 
-        public List<Leads> InsertRowsDb(DateTime startAt, DateTime finishAt)
+        public List<Leads> InsertRowsDb(string startAt, string finishAt, string token)
         {
             List<Leads> list = new List<Leads>();
 
@@ -91,7 +91,7 @@ namespace integracaoLeads2b.Services
                 Customer_company_name = "Empresa do Cliente"
             };
 
-            //HttpContent content = helper.GetLeads(startAt, finishAt);
+            HttpContent content = _helper.GetLeads(startAt, finishAt, token);
 
             //if (content == null)
             //    return new List<Leads>() ;

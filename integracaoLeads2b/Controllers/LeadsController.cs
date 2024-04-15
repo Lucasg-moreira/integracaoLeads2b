@@ -17,13 +17,19 @@ namespace integracaoLeads2b.Controllers
         }
 
         [HttpPost("down-sync")]
-        public IActionResult DownloadLeads()
+        public IActionResult DownloadLeads(DateTime startAt, DateTime finishAt)
         {
             try
             {
-                var result = _leadsService.InsertRowsDb(
-                DateTime.ParseExact("2024-01-01 00:00:00", "yyyy-MM-dd hh:mm:ss", null, System.Globalization.DateTimeStyles.None),
-                DateTime.ParseExact("2024-03-01 00:00:00", "yyyy-MM-dd hh:mm:ss", null, System.Globalization.DateTimeStyles.None)
+                string token = HttpContext.Request.Headers["Authorization"];
+
+                if (token == null)
+                    throw new Exception("Token não encontrado!");
+
+                var result = _leadsService.InsertRowsDb(    
+                    startAt.ToString("yyyy-MM-dd hh:mm:ss"),
+                    finishAt.ToString("yyyy-MM-dd hh:mm:ss"),
+                    token
                 );
 
                 return Ok(result);

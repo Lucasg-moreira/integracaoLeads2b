@@ -1,4 +1,5 @@
 ﻿using integracaoLeads2b.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,9 +19,15 @@ namespace integracaoLeads2b.Controllers
         {
             try
             {
+                string token = HttpContext.Request.Headers["Authorization"];
+
+                if (token == null)
+                    throw new Exception("Token não encontrado!");
+
                 _opportunityService.InsertRowsDb(
                     start_at.ToString("yyyy-MM-dd hh:mm:ss"),
-                    finish_at.ToString("yyyy-MM-dd hh:mm:ss")
+                    finish_at.ToString("yyyy-MM-dd hh:mm:ss"),
+                    token
                 );
 
                 return Ok("Registros inseridos!");
