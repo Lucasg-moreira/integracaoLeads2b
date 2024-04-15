@@ -24,13 +24,13 @@ namespace integracaoLeads2b.Controllers
                 if (token == null)
                     throw new Exception("Token não encontrado!");
 
-                _opportunityService.InsertRowsDb(
+                int rows = _opportunityService.InsertRowsDb(
                     start_at.ToString("yyyy-MM-dd hh:mm:ss"),
                     finish_at.ToString("yyyy-MM-dd hh:mm:ss"),
                     token
                 );
 
-                return Ok("Registros inseridos!");
+                return Ok($"Quantidade de registros inseridos: {rows}!");
             }
             catch (Exception e)
             {

@@ -5,7 +5,6 @@ namespace integracaoLeads2b.Interfaces
 {
     public interface ILeadsService
     {
-        public List<Leads> InsertRowsDb(string startAt, string finishAt, string token);
-
+        public int InsertRowsDb(string startAt, string finishAt, string token);
     }
 }

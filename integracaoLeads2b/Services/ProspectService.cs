@@ -13,7 +13,7 @@ namespace integracaoLeads2b.Services
         {
             _prospectRepository = prospectRepository;
         }
-        public void InsertRowsDb(string startAt, string finishAt, string token)
+        public int InsertRowsDb(string startAt, string finishAt, string token)
         {
             List<Prospect> list = new List<Prospect>();
 
@@ -104,6 +104,8 @@ namespace integracaoLeads2b.Services
 
             if (result == 0)
                 throw new Exception("Não foi possível inserir os registros no banco.");
+
+            return result;
         }
     }
 }

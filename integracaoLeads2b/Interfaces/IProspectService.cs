@@ -2,6 +2,6 @@
 {
     public interface IProspectService
     {
-        public void InsertRowsDb(string startAt, string endAt, string token);
+        public int InsertRowsDb(string startAt, string endAt, string token);
     }
 }

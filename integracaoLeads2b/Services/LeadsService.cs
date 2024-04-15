@@ -23,7 +23,7 @@ namespace integracaoLeads2b.Services
             _leadsRepository = leadsRepository;
         }
 
-        public List<Leads> InsertRowsDb(string startAt, string finishAt, string token)
+        public int InsertRowsDb(string startAt, string finishAt, string token)
         {
             List<Leads> list = new List<Leads>();
 
@@ -99,15 +99,12 @@ namespace integracaoLeads2b.Services
             _leadsRepository.Add(leads_1);
             _leadsRepository.Add(leads_2);
 
-            _leadsRepository.SaveChanges();
+            int result = _leadsRepository.SaveChanges();
 
             list.Add(leads_1);
             list.Add(leads_2);
 
-            return list;
+            return result;
         }
-
-
-
     }
 }

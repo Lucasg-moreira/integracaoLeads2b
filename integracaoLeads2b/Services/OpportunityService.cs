@@ -12,7 +12,7 @@ namespace integracaoLeads2b.Services
         public OpportunityService(IOpportunityRepository opportunityRepository) { 
             _opportunityRepository = opportunityRepository;
         }
-        public void InsertRowsDb(string startAt, string finishAt, string token)
+        public int InsertRowsDb(string startAt, string finishAt, string token)
         {
             List<Opportunity> list = new List<Opportunity>();
 
@@ -109,6 +109,8 @@ namespace integracaoLeads2b.Services
 
             if (result == 0)
                 throw new Exception("Não foi possível inserir os registros no banco.");
+
+            return result;
         }
     }
 }
