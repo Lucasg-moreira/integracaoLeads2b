@@ -16,6 +16,9 @@ builder.Services.AddScoped<ILeadsRepository, LeadsRepository>();
 builder.Services.AddScoped<IOpportunityService, OpportunityService>();
 builder.Services.AddScoped<IOpportunityRepository, OpportunityRepository>();
 
+builder.Services.AddScoped<IProspectRepository, ProspectRepository>();
+builder.Services.AddScoped<IProspectService, ProspectService>();
+
 // Add services to the container.
 
 builder.Services.AddControllers();

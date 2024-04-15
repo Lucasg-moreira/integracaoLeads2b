@@ -2,9 +2,9 @@
 
 namespace integracaoLeads2b.Interfaces
 {
-    public interface IOpportunityRepository
+    public interface IProspectRepository
     {
-        public void Add(Opportunity opportunity);
+        public void Add(Prospect prospect);
         public int SaveChanges();
     }
 }

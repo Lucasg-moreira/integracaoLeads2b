@@ -48,5 +48,25 @@ namespace integracaoLeads2b.Helpers
             return response.Content;
         }
 
+        public HttpContent GetProspects(string startAt, string finishAt, string token)
+        {
+            HttpClient client = new HttpClient();
+
+            string urlFormatted = $"{url}/prospects/list?start_at={startAt}&finish_at={finishAt}";
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpResponseMessage response = client.GetAsync(urlFormatted).GetAwaiter().GetResult();
+
+            //tratamento da response
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            return response.Content;
+        }
+
     }
 }
