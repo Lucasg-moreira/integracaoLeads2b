@@ -174,7 +174,7 @@ namespace integracaoLeads2b.Persistence.Migrations
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("varchar(25)");
+                        .HasColumnType("varchar(2)");
 
                     b.HasKey("Lead_id");
 

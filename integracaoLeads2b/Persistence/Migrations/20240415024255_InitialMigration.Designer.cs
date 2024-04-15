@@ -12,7 +12,7 @@ using integracaoLeads2b.Persistence;
 namespace integracaoLeads2b.Persistence.Migrations
 {
     [DbContext(typeof(LeadsDbContext))]
-    [Migration("20240414180117_InitialMigration")]
+    [Migration("20240415024255_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
