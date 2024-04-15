@@ -5,8 +5,7 @@ namespace integracaoLeads2b.Interfaces
 {
     public interface ILeadsService
     {
-        public List<Leads> insertRowsDb(DateTime startAt, DateTime finishAt);
-        public HttpContent getLeadsByApi(DateTime startAt, DateTime finishAt);
+        public List<Leads> InsertRowsDb(DateTime startAt, DateTime finishAt);
 
     }
 }

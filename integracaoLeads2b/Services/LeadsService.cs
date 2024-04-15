@@ -1,4 +1,5 @@
 ﻿using integracaoLeads2b.Entities;
+using integracaoLeads2b.Helpers;
 using integracaoLeads2b.Interfaces;
 using integracaoLeads2b.Repository;
 using Microsoft.AspNetCore.SignalR;
@@ -12,8 +13,9 @@ namespace integracaoLeads2b.Services
     public class LeadsService : ILeadsService
     {
         private readonly ILeadsRepository _leadsRepository;
+        private IntegracaoHelper _helper = new IntegracaoHelper();
 
-        private string url = "https://app.leads2b.com/api/v1";
+
         private string token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTI2MDYzMDMsImlhdCI6MTcxMjYwNjMwMywiY2giOiJxM21vcHFDVUlVWVRITHZkOU85V2Zqa3JUUkpQRWdkRSIsInVoIjpudWxsfQ.ivFx55wZjgkUM9SiaOf21vswc6b1T2O3t-69yE0FhA0";
 
         public LeadsService(ILeadsRepository leadsRepository)
@@ -21,7 +23,7 @@ namespace integracaoLeads2b.Services
             _leadsRepository = leadsRepository;
         }
 
-        public List<Leads> insertRowsDb(DateTime startAt, DateTime finishAt)
+        public List<Leads> InsertRowsDb(DateTime startAt, DateTime finishAt)
         {
             List<Leads> list = new List<Leads>();
 
@@ -89,7 +91,7 @@ namespace integracaoLeads2b.Services
                 Customer_company_name = "Empresa do Cliente"
             };
 
-            //HttpContent content = getLeadsByApi(startAt, finishAt);
+            //HttpContent content = helper.GetLeads(startAt, finishAt);
 
             //if (content == null)
             //    return new List<Leads>() ;
@@ -105,23 +107,7 @@ namespace integracaoLeads2b.Services
             return list;
         }
 
-        public HttpContent getLeadsByApi(DateTime startAt, DateTime finishAt)
-        {
-            HttpClient client = new HttpClient();
 
-            string urlFormatted = $"{this.url}/leads/list?start_at={startAt}&finish_at={finishAt}";
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.token);
-
-            HttpResponseMessage response = client.GetAsync(urlFormatted).GetAwaiter().GetResult();
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                return null;
-            }
-
-            return response.Content;
-        }
 
     }
 }

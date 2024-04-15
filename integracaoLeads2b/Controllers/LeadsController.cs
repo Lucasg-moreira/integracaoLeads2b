@@ -17,11 +17,11 @@ namespace integracaoLeads2b.Controllers
         }
 
         [HttpPost("down-sync")]
-        public IActionResult Get()
+        public IActionResult DownloadLeads()
         {
             try
             {
-                var result = _leadsService.insertRowsDb(
+                var result = _leadsService.InsertRowsDb(
                 DateTime.ParseExact("2024-01-01 00:00:00", "yyyy-MM-dd hh:mm:ss", null, System.Globalization.DateTimeStyles.None),
                 DateTime.ParseExact("2024-03-01 00:00:00", "yyyy-MM-dd hh:mm:ss", null, System.Globalization.DateTimeStyles.None)
                 );

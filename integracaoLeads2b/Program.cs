@@ -12,6 +12,9 @@ builder.Services.AddDbContext<LeadsDbContext>(o => o.UseSqlServer(connectionStri
 builder.Services.AddScoped<ILeadsService, LeadsService>();
 builder.Services.AddScoped<ILeadsRepository, LeadsRepository>();
 
+builder.Services.AddScoped<IOpportunityService, OpportunityService>();
+builder.Services.AddScoped<IOpportunityRepository, OpportunityRepository>();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
