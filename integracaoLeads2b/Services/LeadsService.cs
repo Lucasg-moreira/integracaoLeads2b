@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Identity.Client;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace integracaoLeads2b.Services
 {
@@ -13,21 +14,22 @@ namespace integracaoLeads2b.Services
     public class LeadsService : ILeadsService
     {
         private readonly ILeadsRepository _leadsRepository;
-        private IntegracaoHelper _helper = new IntegracaoHelper();
 
+        private IIntegracaoHelper _integracaoHelper;
 
-        private string token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTI2MDYzMDMsImlhdCI6MTcxMjYwNjMwMywiY2giOiJxM21vcHFDVUlVWVRITHZkOU85V2Zqa3JUUkpQRWdkRSIsInVoIjpudWxsfQ.ivFx55wZjgkUM9SiaOf21vswc6b1T2O3t-69yE0FhA0";
-
-        public LeadsService(ILeadsRepository leadsRepository)
+        public LeadsService(
+            ILeadsRepository leadsRepository,
+            IIntegracaoHelper integracaoHelper
+            )
         {
             _leadsRepository = leadsRepository;
+            _integracaoHelper = integracaoHelper;
         }
 
         public int InsertRowsDb(string startAt, string finishAt, string token)
         {
-            List<Leads> list = new List<Leads>();
 
-            var leads_1 = new Leads
+            Leads leads_1 = new Leads
             {
                 Lead_name = "Exemplo",
                 Cnpj = "00000000000000",
@@ -91,20 +93,17 @@ namespace integracaoLeads2b.Services
                 Customer_company_name = "Empresa do Cliente"
             };
 
-            HttpContent content = _helper.GetLeads(startAt, finishAt, token);
-
-            //if (content == null)
-            //    return new List<Leads>() ;
-
             _leadsRepository.Add(leads_1);
             _leadsRepository.Add(leads_2);
 
-            int result = _leadsRepository.SaveChanges();
+            // List<Leads> list = _integracaoHelper.GetLeads(startAt, finishAt, token);
 
-            list.Add(leads_1);
-            list.Add(leads_2);
+            //_leadsRepository.AddRange(list);
+
+            int result = _leadsRepository.SaveChanges();
 
             return result;
         }
     }
 }
+

@@ -24,5 +24,9 @@ namespace integracaoLeads2b.Repository
         {
             return _context.SaveChanges();
         }
+        public void AddRange(List<Prospect> prospectList)
+        {
+            _context.Prospects.AddRange(prospectList);
+        }
     }
 }

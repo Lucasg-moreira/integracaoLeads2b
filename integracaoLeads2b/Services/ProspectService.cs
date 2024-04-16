@@ -6,21 +6,19 @@ namespace integracaoLeads2b.Services
 {
     public class ProspectService : IProspectService
     {
-        private IntegracaoHelper _helper = new IntegracaoHelper();
+        private IIntegracaoHelper _integracaoHelper;
         private IProspectRepository _prospectRepository;
 
-        public ProspectService(IProspectRepository prospectRepository)
+        public ProspectService(
+            IProspectRepository prospectRepository,
+            IIntegracaoHelper  integracaoHelper
+            )
         {
+            _integracaoHelper = integracaoHelper;
             _prospectRepository = prospectRepository;
         }
         public int InsertRowsDb(string startAt, string finishAt, string token)
         {
-            List<Prospect> list = new List<Prospect>();
-
-            HttpContent content = _helper.GetOpportunities(startAt, finishAt, token);
-
-            // add logica dos dados com api up
-
             Prospect prospect_1 = new Prospect
             {
                 Prospect_name = "ABC Company",
@@ -96,6 +94,9 @@ namespace integracaoLeads2b.Services
                 Department = "Department2",
                 Custom_fields = "{\"Label\": \"Custom Label\", \"Value\": \"Custom Value\"}"
             };
+
+            // List<Prospect> list = _integracaoHelper.GetProspects(startAt, finishAt, token);
+            // _prospectRepository.AddRange(list);
 
             _prospectRepository.Add(prospect_1);
             _prospectRepository.Add(prospect_2);

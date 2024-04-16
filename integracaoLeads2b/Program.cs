@@ -1,3 +1,4 @@
+using integracaoLeads2b.Helpers;
 using integracaoLeads2b.Interfaces;
 using integracaoLeads2b.Persistence;
 using integracaoLeads2b.Repository;
@@ -18,6 +19,10 @@ builder.Services.AddScoped<IOpportunityRepository, OpportunityRepository>();
 
 builder.Services.AddScoped<IProspectRepository, ProspectRepository>();
 builder.Services.AddScoped<IProspectService, ProspectService>();
+
+builder.Services.AddScoped<IIntegracaoHelper, IntegracaoHelper>();
+
+builder.Services.AddScoped<IHttpRequest, HttpRequestService>();
 
 // Add services to the container.
 

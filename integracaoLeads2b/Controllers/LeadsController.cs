@@ -1,6 +1,4 @@
-﻿using integracaoLeads2b.Entities;
-using integracaoLeads2b.Interfaces;
-using integracaoLeads2b.Services;
+﻿using integracaoLeads2b.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace integracaoLeads2b.Controllers

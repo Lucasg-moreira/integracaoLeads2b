@@ -6,5 +6,6 @@ namespace integracaoLeads2b.Interfaces
     {
         public void Add(Opportunity opportunity);
         public int SaveChanges();
+        public void AddRange(List<Opportunity> opportunityList);
     }
 }

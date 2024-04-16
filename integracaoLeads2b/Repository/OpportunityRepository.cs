@@ -24,5 +24,10 @@ namespace integracaoLeads2b.Repository
         {
             return _context.SaveChanges();
         }
+
+        public void AddRange(List<Opportunity> opportunityList)
+        {
+             _context.Opportunity.AddRange(opportunityList);
+        }
     }
 }

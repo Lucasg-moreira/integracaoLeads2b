@@ -6,20 +6,19 @@ namespace integracaoLeads2b.Services
 {
     public class OpportunityService : IOpportunityService
     {
-        private IntegracaoHelper _helper = new IntegracaoHelper();
         private IOpportunityRepository _opportunityRepository;
+        private IIntegracaoHelper _integracaoHelper;
 
-        public OpportunityService(IOpportunityRepository opportunityRepository) { 
+        public OpportunityService(
+            IOpportunityRepository opportunityRepository,
+            IIntegracaoHelper integracaoHelper
+           ) { 
             _opportunityRepository = opportunityRepository;
+            _integracaoHelper = integracaoHelper;
         }
         public int InsertRowsDb(string startAt, string finishAt, string token)
         {
-            List<Opportunity> list = new List<Opportunity>();
-
-            HttpContent content = _helper.GetOpportunities(startAt, finishAt, token);
-
-            // add logica dos dados com api up
-
+            // mock de dados
             Opportunity opportunity_1 = new Opportunity
             {
                 Opportunity_id = "3",
@@ -101,6 +100,9 @@ namespace integracaoLeads2b.Services
                 Loss_reason = "Outro",
                 Loss_details = "Detalhes da perda"
             };
+
+            //List<Opportunity> list = _integracaoHelper.GetOpportunities(startAt, finishAt, token);
+            // _opportunityRepository.AddRange(list);
 
             _opportunityRepository.Add(opportunity_1);
             _opportunityRepository.Add(opportunity_2);
