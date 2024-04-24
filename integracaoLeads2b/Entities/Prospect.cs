@@ -14,7 +14,7 @@
         public string Company_name { get; set; }
         public string Main_contact { get; set; }
         public string Main_email { get; set; }
-        public string Main_phone { get; set; }
+        public string? Main_phone { get; set; }
         public string? Active { get; set; }
         public string? Cnpj { get; set; }
         public string? Phone { get; set; }
