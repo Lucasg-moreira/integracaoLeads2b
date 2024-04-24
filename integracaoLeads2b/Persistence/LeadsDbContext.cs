@@ -65,7 +65,7 @@ namespace integracaoLeads2b.Persistence
                 prospect.Property(p => p.Main_phone).IsRequired().HasColumnType("varchar(20)");
                 prospect.Property(p => p.Phone).HasColumnType("varchar(20)");
                 prospect.Property(p => p.Email).IsRequired().HasColumnType("varchar(100)");
-                prospect.Property(p => p.Created_at).IsRequired().HasColumnType("datetime");
+                prospect.Property(p => p.Created_at).IsRequired().HasColumnType("varchar(20)");
                 prospect.Property(p => p.City).HasColumnType("varchar(100)");
                 prospect.Property(p => p.State).HasColumnType("varchar(2)");
                 prospect.Property(p => p.Origin).HasColumnType("varchar(50)");
@@ -78,8 +78,8 @@ namespace integracaoLeads2b.Persistence
                 prospect.Property(p => p.Active);
                 prospect.Property(p => p.Tags).HasColumnType("varchar(max)");
                 prospect.Property(p => p.Exclusion_reason).HasColumnType("varchar(100)");
-                prospect.Property(p => p.Deleted_at).HasColumnType("datetime");
-                prospect.Property(p => p.Updated_at).HasColumnType("datetime");
+                prospect.Property(p => p.Deleted_at).HasColumnType("varchar(20)");
+                prospect.Property(p => p.Updated_at).HasColumnType("varchar(20)");
                 prospect.Property(p => p.Enriched);
                 prospect.Property(p => p.Social_reason).HasColumnType("varchar(100)");
                 prospect.Property(p => p.Fk_id);

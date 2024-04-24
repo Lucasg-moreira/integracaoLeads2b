@@ -68,19 +68,22 @@ namespace integracaoLeads2b.Helpers
 
         public List<Prospect> GetProspects(string startAt, string finishAt, string token)
         {
+            List<Prospect> list = new List<Prospect>();
+
 
             string urlFormatted = $"{url}/prospect/list?start_at={startAt}&finish_at={finishAt}";
 
-            var content = _httpRequestService.Get(urlFormatted, token);
+            string content = _httpRequestService.Get(urlFormatted, token);
+            JsonSerializerOptions options = CreateJsonMapOptions();
 
+            ReadProspectDto contentMapped = JsonSerializer.Deserialize<ReadProspectDto>(content, options);
 
-           //List<Prospect>? contentMapped = JsonSerializer.Deserialize<List<Prospect>>(content.Result);
+            if (contentMapped.Result != null)
+            {
+                list.AddRange(contentMapped.Result);
+            }
 
-                //return contentMapped;
-
-            return new List<Prospect> { };
-
-
+            return list;
         }
 
     }
