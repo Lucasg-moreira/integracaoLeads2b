@@ -1,6 +1,7 @@
 ﻿using integracaoLeads2b.Entities;
 using integracaoLeads2b.Interfaces;
 using integracaoLeads2b.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace integracaoLeads2b.Repository
 {
@@ -14,6 +15,8 @@ namespace integracaoLeads2b.Repository
 
         public void Add(Leads leads)
         {
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            Console.WriteLine(leads);
             _context.Leads.Add(leads);
         }
 

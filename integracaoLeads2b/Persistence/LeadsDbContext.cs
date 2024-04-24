@@ -13,14 +13,18 @@ namespace integracaoLeads2b.Persistence
         public DbSet<Leads> Leads { get; set; }
         public DbSet<Prospect> Prospects { get; set; }
         public DbSet<Opportunity> Opportunity { get; set; }
+        public DbSet<Item> items { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Leads>(lead =>
-            {
-                lead.HasKey(l => l.Lead_id);
+            {                
+                lead.HasKey(l => l.Id);
+
+
+                lead.Property(l => l.Lead_id).IsRequired().HasColumnType("varchar(20)");
 
                 lead.Property(l => l.Lead_name).IsRequired().HasColumnType("varchar(100)");
                 lead.Property(l => l.Cnpj).HasColumnType("varchar(14)");
@@ -32,7 +36,7 @@ namespace integracaoLeads2b.Persistence
                 lead.Property(l => l.Origin).HasColumnType("varchar(50)");
                 lead.Property(l => l.Lead_created_at).IsRequired().HasColumnName("Lead_Created_at").HasColumnType("varchar(30)");
                 lead.Property(l => l.City).HasColumnType("varchar(100)");
-                lead.Property(l => l.State).HasColumnType("varchar(2)");
+                lead.Property(l => l.State).HasColumnType("varchar(30)");
                 lead.Property(l => l.Lead_responsable).HasColumnType("varchar(100)");
                 lead.Property(l => l.Lead_responsable_id).HasColumnType("varchar(10)");
                 lead.Property(l => l.Lead_status).HasColumnType("varchar(50)");
@@ -55,15 +59,15 @@ namespace integracaoLeads2b.Persistence
 
             modelBuilder.Entity<Prospect>(prospect =>
             {
-                prospect.HasKey(p => p.Prospect_id);
+                prospect.HasKey(p => p.Id);
 
                 prospect.Property(p => p.Prospect_name).IsRequired().HasColumnType("varchar(100)");
                 prospect.Property(p => p.Company_name).HasColumnType("varchar(100)");
                 prospect.Property(p => p.Cnpj).HasColumnType("varchar(14)");
                 prospect.Property(p => p.Main_contact).IsRequired().HasColumnType("varchar(100)");
                 prospect.Property(p => p.Main_email).IsRequired().HasColumnType("varchar(100)");
-                prospect.Property(p => p.Main_phone).IsRequired().HasColumnType("varchar(20)");
-                prospect.Property(p => p.Phone).HasColumnType("varchar(20)");
+                prospect.Property(p => p.Main_phone).IsRequired().HasColumnType("varchar(30)");
+                prospect.Property(p => p.Phone).HasColumnType("varchar(100)");
                 prospect.Property(p => p.Email).IsRequired().HasColumnType("varchar(100)");
                 prospect.Property(p => p.Created_at).IsRequired().HasColumnType("varchar(20)");
                 prospect.Property(p => p.City).HasColumnType("varchar(100)");
@@ -85,7 +89,7 @@ namespace integracaoLeads2b.Persistence
                 prospect.Property(p => p.Fk_id);
                 prospect.Property(p => p.List_id);
                 prospect.Property(p => p.Country).HasColumnType("varchar(100)");
-                prospect.Property(p => p.Zipcode).HasColumnType("varchar(8)");
+                prospect.Property(p => p.Zipcode).HasColumnType("varchar(20)");
                 prospect.Property(p => p.Street).HasColumnType("varchar(100)");
                 prospect.Property(p => p.Complement).HasColumnType("varchar(100)");
                 prospect.Property(p => p.Neighborhood).HasColumnType("varchar(100)");
@@ -95,7 +99,7 @@ namespace integracaoLeads2b.Persistence
 
             modelBuilder.Entity<Opportunity>(opportunity =>
             {
-                opportunity.HasKey(o => o.Opportunity_id);
+                opportunity.HasKey(o => o.Id);
 
                 opportunity.Property(o => o.Rdstation_uuid).HasColumnType("varchar(100)");
                 opportunity.Property(o => o.Lead_id).HasColumnType("varchar(100)");

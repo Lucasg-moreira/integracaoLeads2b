@@ -3,6 +3,7 @@ using integracaoLeads2b.Helpers;
 using integracaoLeads2b.Interfaces;
 using integracaoLeads2b.Repository;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.Net;
 using System.Net.Http.Headers;
@@ -30,7 +31,7 @@ namespace integracaoLeads2b.Services
         {
             List<Leads> list = _integracaoHelper.GetLeads(startAt, finishAt, token);
 
-            _leadsRepository.AddRange(list);
+            list.ForEach(e => _leadsRepository.Add(e));
 
             int result = _leadsRepository.SaveChanges();
 

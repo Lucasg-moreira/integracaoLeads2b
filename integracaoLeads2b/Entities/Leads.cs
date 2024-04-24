@@ -1,7 +1,11 @@
-﻿namespace integracaoLeads2b.Entities
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace integracaoLeads2b.Entities
 {
     public class Leads
     {
+        public Guid Id { get; set; }
         public string Lead_id { get; set; }
         public string Lead_name { get; set; }
         public string Cnpj { get; set; }
@@ -10,9 +14,9 @@
         public string Main_phone { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Origin { get; set; }
+        public string? Origin { get; set; }
         public string Lead_created_at { get; set; }
-        public string City { get; set; }
+        public string? City { get; set; }
         public string? State { get; set; }
         public string Lead_responsable { get; set; }
         public string Lead_responsable_id { get; set; }
@@ -28,8 +32,8 @@
         public string? Opportunity_status { get; set; }
         public string? Order_date { get; set; }
         public decimal? Order_total { get; set; }
-        public string Customer_id { get; set; }
-        public string Customer_name { get; set; }
-        public string Customer_company_name { get; set; }
+        public string? Customer_id { get; set; }
+        public string? Customer_name { get; set; }
+        public string? Customer_company_name { get; set; }
     }
 }
