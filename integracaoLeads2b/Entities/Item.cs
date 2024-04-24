@@ -2,7 +2,7 @@
 {
     public class Item
     {
-        public DateTime Created_at { get; set; }
+        public string Created_at { get; set; }
         public string Amount { get; set; }
         public string Price { get; set; }
         public string Id { get; set; }

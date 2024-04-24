@@ -124,13 +124,13 @@ namespace integracaoLeads2b.Persistence
                 opportunity.Property(o => o.Origin).HasColumnType("varchar(50)");
                 opportunity.Property(o => o.Lead_responsible).HasColumnType("varchar(100)");
                 opportunity.Property(o => o.Lead_responsible_id).HasColumnType("varchar(100)");
-                opportunity.Property(o => o.Opportunity_created_at).HasColumnType("datetime");
+                opportunity.Property(o => o.Opportunity_created_at).HasColumnType("varchar(20)");
                 opportunity.Property(o => o.Opportunity_created_by).HasColumnType("varchar(100)");
-                opportunity.Property(o => o.Opportunity_updated_at).HasColumnType("datetime");
+                opportunity.Property(o => o.Opportunity_updated_at).HasColumnType("varchar(20)");
                 opportunity.Property(o => o.Expected_close_date).HasColumnType("varchar(100)");
-                opportunity.Property(o => o.Reactived_at).HasColumnType("datetime");
+                opportunity.Property(o => o.Reactived_at).HasColumnType("varchar(20)");
                 opportunity.Property(o => o.Opportunity_status).HasColumnType("varchar(50)");
-                opportunity.Property(o => o.Lost_at).HasColumnType("datetime");
+                opportunity.Property(o => o.Lost_at).HasColumnType("varchar(20)");
                 opportunity.Property(o => o.Loss_reason).HasColumnType("varchar(100)");
                 opportunity.Property(o => o.Loss_details).HasColumnType("varchar(max)");
             });

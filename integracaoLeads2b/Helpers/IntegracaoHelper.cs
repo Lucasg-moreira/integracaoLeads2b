@@ -23,14 +23,9 @@ namespace integracaoLeads2b.Helpers
 
             string content = _httpRequestService.Get(urlFormatted, token);
 
-            JsonSerializerOptions options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
+            JsonSerializerOptions options = CreateJsonMapOptions();
 
             ReadLeadsDto contentMapped = JsonSerializer.Deserialize<ReadLeadsDto>(content, options)!;
-
 
             if (contentMapped.Result != null)
             {
@@ -40,15 +35,35 @@ namespace integracaoLeads2b.Helpers
             return list;
         }
 
+        private JsonSerializerOptions CreateJsonMapOptions()
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            return options;
+        }
+
         public List<Opportunity> GetOpportunities(string startAt, string finishAt, string token)
         {
+            List<Opportunity> list = new List<Opportunity>();
+
             string urlFormatted = $"{url}/opportunities/list?start_at={startAt}&finish_at={finishAt}";
 
             string content = _httpRequestService.Get(urlFormatted, token);
-           
-            List<Opportunity>? contentMapped = JsonSerializer.Deserialize<List<Opportunity>>(content);
 
-            return contentMapped;
+            JsonSerializerOptions options = CreateJsonMapOptions();
+
+            ReadOpportunityDto contentMapped = JsonSerializer.Deserialize<ReadOpportunityDto>(content, options);
+
+            if (contentMapped.Result != null)
+            {
+                list.AddRange(contentMapped.Result);
+            }
+
+            return list;
         }
 
         public List<Prospect> GetProspects(string startAt, string finishAt, string token)
@@ -56,15 +71,12 @@ namespace integracaoLeads2b.Helpers
 
             string urlFormatted = $"{url}/prospect/list?start_at={startAt}&finish_at={finishAt}";
 
-            var content = _httpRequestService.GetAsync(urlFormatted, token);
+            var content = _httpRequestService.Get(urlFormatted, token);
 
 
-            if (content.IsCompleted)
-            {
-                List<Prospect>? contentMapped = JsonSerializer.Deserialize<List<Prospect>>(content.Result);
+           //List<Prospect>? contentMapped = JsonSerializer.Deserialize<List<Prospect>>(content.Result);
 
-                return contentMapped;
-            }
+                //return contentMapped;
 
             return new List<Prospect> { };
 
