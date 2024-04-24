@@ -1,10 +1,9 @@
-﻿using System.Net.Http.Headers;
-using System.Net;
-using integracaoLeads2b.Services;
+﻿
 using System.Text.Json;
 using integracaoLeads2b.Entities;
-using Newtonsoft.Json.Linq;
 using integracaoLeads2b.Interfaces;
+using integracaoLeads2b.Dtos;
+
 
 namespace integracaoLeads2b.Helpers
 {
@@ -18,13 +17,27 @@ namespace integracaoLeads2b.Helpers
 
         public List<Leads> GetLeads(string startAt, string finishAt, string token)
         {
+            List <Leads> list = new List<Leads>();
+
             string urlFormatted = $"{url}/leads/list?start_at={startAt}&finish_at={finishAt}";
 
             string content = _httpRequestService.Get(urlFormatted, token);
 
-            List<Leads>? contentMapped = JsonSerializer.Deserialize<List<Leads>>(content);
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
 
-            return contentMapped;
+            ReadLeadsDto contentMapped = JsonSerializer.Deserialize<ReadLeadsDto>(content, options)!;
+
+
+            if (contentMapped.Result != null)
+            {
+                list.AddRange(contentMapped.Result);
+            }
+
+            return list;
         }
 
         public List<Opportunity> GetOpportunities(string startAt, string finishAt, string token)
@@ -41,13 +54,21 @@ namespace integracaoLeads2b.Helpers
         public List<Prospect> GetProspects(string startAt, string finishAt, string token)
         {
 
-            string urlFormatted = $"{url}/prospects/list?start_at={startAt}&finish_at={finishAt}";
+            string urlFormatted = $"{url}/prospect/list?start_at={startAt}&finish_at={finishAt}";
 
-            string content = _httpRequestService.Get(urlFormatted, token);
+            var content = _httpRequestService.GetAsync(urlFormatted, token);
 
-            List<Prospect>? contentMapped = JsonSerializer.Deserialize<List<Prospect>>(content);
 
-            return contentMapped;
+            if (content.IsCompleted)
+            {
+                List<Prospect>? contentMapped = JsonSerializer.Deserialize<List<Prospect>>(content.Result);
+
+                return contentMapped;
+            }
+
+            return new List<Prospect> { };
+
+
         }
 
     }
