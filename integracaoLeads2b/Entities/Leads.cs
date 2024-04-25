@@ -8,12 +8,12 @@ namespace integracaoLeads2b.Entities
         public Guid Id { get; set; }
         public string Lead_id { get; set; }
         public string Lead_name { get; set; }
-        public string Cnpj { get; set; }
+        public string? Cnpj { get; set; }
         public string Main_contact { get; set; }
         public string Main_email { get; set; }
-        public string Main_phone { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
+        public string? Main_phone { get; set; }
+        public string? Phone { get; set; }
+        public string? Email { get; set; }
         public string? Origin { get; set; }
         public string Lead_created_at { get; set; }
         public string? City { get; set; }
